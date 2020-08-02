@@ -1,13 +1,6 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as subRedditActions from '../redux/actions/';
+import React from 'react';
 
 const PostListPage = (props) => {
-  const { getSubReddits } = props;
-  useEffect(() => {
-    getSubReddits();
-  }, []);
   return (
     <>
       {props.loading ? (
@@ -27,21 +20,4 @@ const PostListPage = (props) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    loading: state.loading,
-    data: state.data,
-    error: state.error,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    getSubReddits: bindActionCreators(
-      subRedditActions.getSubRedditsThunk,
-      dispatch
-    ),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PostListPage);
+export default PostListPage;
